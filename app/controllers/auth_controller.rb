@@ -1,4 +1,4 @@
-class AuthController < ApplicationController
+class AuthController < ActionController::API
 
   def sign_up
     action = Player::SignUp.call(player_params: player_params)

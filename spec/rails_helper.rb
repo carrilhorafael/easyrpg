@@ -71,6 +71,11 @@ RSpec.configure do |config|
     end
   end
 
+  config.before(:each, type: :request) do |example|
+    @active_user = create(:player)
+    @authenticated_headers = { 'Authorization' => SessionGenerator.encode(player_id: @active_user.id) }
+  end
+
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:

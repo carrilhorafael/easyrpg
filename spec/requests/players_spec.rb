@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe "/players", type: :request do
-  # This should return the minimal set of attributes required to create a valid
-  # Player. As you add validations to Player, be sure to
-  # adjust the attributes here as well.
   let(:valid_attributes) {
     { name: Faker::Name.name, email: Faker::Internet.email, password: 'Password1' }
   }
@@ -12,18 +9,10 @@ RSpec.describe "/players", type: :request do
     { name: nil, email: nil, password: nil }
   }
 
-  # This should return the minimal set of values that should be in the headers
-  # in order to pass any filters (e.g. authentication) defined in
-  # PlayersController, or in your router and rack
-  # middleware. Be sure to keep this updated too.
-  let(:valid_headers) {
-    {}
-  }
-
   describe "GET /index" do
     it "renders a successful response" do
       Player.create! valid_attributes
-      get players_url, headers: valid_headers, as: :json
+      get players_url, headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -31,7 +20,7 @@ RSpec.describe "/players", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       player = Player.create! valid_attributes
-      get player_url(player), as: :json
+      get player_url(player), headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -45,7 +34,7 @@ RSpec.describe "/players", type: :request do
       it "updates the requested player" do
         player = Player.create! valid_attributes
         patch player_url(player),
-              params: { player: new_attributes }, headers: valid_headers, as: :json
+              params: { player: new_attributes }, headers: @authenticated_headers, as: :json
         player.reload
 
         expect(player.name).to eq(new_attributes[:name])
@@ -55,7 +44,7 @@ RSpec.describe "/players", type: :request do
       it "renders a JSON response with the player" do
         player = Player.create! valid_attributes
         patch player_url(player),
-              params: { player: new_attributes }, headers: valid_headers, as: :json
+              params: { player: new_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -65,7 +54,7 @@ RSpec.describe "/players", type: :request do
       it "renders a JSON response with errors for the player" do
         player = Player.create! valid_attributes
         patch player_url(player),
-              params: { player: invalid_attributes }, headers: valid_headers, as: :json
+              params: { player: invalid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -76,7 +65,7 @@ RSpec.describe "/players", type: :request do
     it "destroys the requested player" do
       player = Player.create! valid_attributes
       expect {
-        delete player_url(player), headers: valid_headers, as: :json
+        delete player_url(player), headers: @authenticated_headers, as: :json
       }.to change(Player, :count).by(-1)
     end
   end
