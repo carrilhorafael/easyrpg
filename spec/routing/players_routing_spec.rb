@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Api::PlayersController, type: :routing do
+RSpec.describe PlayersController, type: :routing do
   describe "routing" do
     it "routes to #index" do
       expect(get: "/players").to route_to("players#index")
@@ -8,10 +8,6 @@ RSpec.describe Api::PlayersController, type: :routing do
 
     it "routes to #show" do
       expect(get: "/players/1").to route_to("players#show", id: "1")
-    end
-
-    it "routes to #create" do
-      expect(post: "/players").to route_to("players#create")
     end
 
     it "routes to #update via PUT" do
