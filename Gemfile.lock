@@ -98,6 +98,10 @@ GEM
       activesupport (>= 5.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
+    interactor (3.1.2)
+    interactor-rails (2.2.1)
+      interactor (~> 3.0)
+      rails (>= 4.2)
     jsonapi-renderer (0.2.2)
     jwt (2.7.0)
     listen (3.8.0)
@@ -233,6 +237,7 @@ DEPENDENCIES
   database_cleaner
   factory_bot_rails
   faker
+  interactor-rails
   jwt
   listen (~> 3.3)
   pg (~> 1.1)
