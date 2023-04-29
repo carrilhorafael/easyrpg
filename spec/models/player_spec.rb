@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Player, type: :model do
+  describe 'associations' do
+    it { should have_many(:mastered_adventures).class_name('Adventure').with_foreign_key('gamemaster_id') }
+  end
 
   describe 'validations' do
     it { should validate_presence_of(:name) }

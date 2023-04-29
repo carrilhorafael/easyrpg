@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :adventures
   resources :players, except: [:create]
   post '/sign_up', to: 'auth#sign_up'
   post '/login', to: 'auth#login'

@@ -1,5 +1,7 @@
-class Player::Base
-  include Interactor
+class Player::Base < AbstractInteractor
+  def resource
+    player
+  end
 
   def player
     context.player
