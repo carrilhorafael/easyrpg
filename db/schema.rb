@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_29_131318) do
+ActiveRecord::Schema.define(version: 2023_04_29_142525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "adventure_sessions", force: :cascade do |t|
+    t.date "date"
+    t.string "title"
+    t.string "description"
+    t.bigint "adventure_id", null: false
+    t.datetime "finished_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adventure_id"], name: "index_adventure_sessions_on_adventure_id"
+  end
 
   create_table "adventures", force: :cascade do |t|
     t.string "name"
@@ -36,5 +47,6 @@ ActiveRecord::Schema.define(version: 2023_04_29_131318) do
     t.integer "login_count", default: 0
   end
 
+  add_foreign_key "adventure_sessions", "adventures"
   add_foreign_key "adventures", "players", column: "gamemaster_id"
 end

@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :adventures
+
+  resources :adventures do
+    resources :sessions, controller: 'adventure_sessions' do
+      post :finish, on: :member
+    end
+  end
   resources :players, except: [:create]
   post '/sign_up', to: 'auth#sign_up'
   post '/login', to: 'auth#login'
