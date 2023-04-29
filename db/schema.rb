@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_29_142525) do
+ActiveRecord::Schema.define(version: 2023_04_29_161810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "activity_logs", force: :cascade do |t|
+    t.string "text"
+    t.bigint "performer_id", null: false
+    t.bigint "session_id"
+    t.bigint "adventure_id", null: false
+    t.jsonb "extra", default: {}
+    t.string "activity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adventure_id"], name: "index_activity_logs_on_adventure_id"
+    t.index ["performer_id"], name: "index_activity_logs_on_performer_id"
+    t.index ["session_id"], name: "index_activity_logs_on_session_id"
+  end
 
   create_table "adventure_sessions", force: :cascade do |t|
     t.date "date"
@@ -47,6 +61,9 @@ ActiveRecord::Schema.define(version: 2023_04_29_142525) do
     t.integer "login_count", default: 0
   end
 
+  add_foreign_key "activity_logs", "adventure_sessions", column: "session_id"
+  add_foreign_key "activity_logs", "adventures"
+  add_foreign_key "activity_logs", "players", column: "performer_id"
   add_foreign_key "adventure_sessions", "adventures"
   add_foreign_key "adventures", "players", column: "gamemaster_id"
 end
