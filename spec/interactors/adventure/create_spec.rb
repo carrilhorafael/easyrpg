@@ -15,5 +15,7 @@ describe 'Adventure::Create', type: :interactor do
 
   describe '.call' do
     it { expect { action }.to change { master.mastered_adventures.count }.by(1) }
+    it { expect { action }.to change { Adventure.count }.by(1) }
+    it { expect { action }.to change { ActivityLog.where(activity: 'adventure::create').count }.by(1) }
   end
 end

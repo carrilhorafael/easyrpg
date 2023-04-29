@@ -1,4 +1,5 @@
 class Adventure::Create < Adventure::Base
+  after :generate_activity_log
 
   def call
     build_adventure
@@ -14,5 +15,14 @@ class Adventure::Create < Adventure::Base
 
   def adventure_params
     context.adventure_params
+  end
+
+  def generate_activity_log
+    ActivityLog.log!(
+      text: "#{performer.name} criou a aventura #{adventure.name}",
+      performer: performer,
+      adventure: adventure,
+      activity: 'adventure::create'
+    )
   end
 end

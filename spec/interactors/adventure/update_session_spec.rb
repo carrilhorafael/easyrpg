@@ -29,6 +29,12 @@ RSpec.describe Adventure::UpdateSession, type: :interactor do
           Adventure::UpdateSession.call!(adventure: adventure, session: session, session_params: session_params, performer: master)
         }.to change(session, :title).to(session_params[:title])
       end
+
+      it 'generates a activity log' do
+        expect {
+          Adventure::UpdateSession.call!(adventure: adventure, session: session, session_params: session_params, performer: master)
+        }.to change { ActivityLog.where(activity: 'adventure::update_session').count }.by(1)
+      end
     end
   end
 end

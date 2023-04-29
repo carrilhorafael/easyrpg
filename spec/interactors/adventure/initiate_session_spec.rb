@@ -41,6 +41,12 @@ RSpec.describe Adventure::InitiateSession, type: :interactor do
 
         expect(action.session.finished?).to be_falsey
       end
+
+      it 'generates a activity log' do
+        expect {
+          Adventure::InitiateSession.call!(adventure: adventure, session_params: session_params, performer: master)
+        }.to change { ActivityLog.where(activity: 'adventure::initiate_session').count }.by(1)
+      end
     end
   end
 end

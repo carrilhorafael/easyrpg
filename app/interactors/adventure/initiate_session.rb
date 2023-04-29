@@ -1,4 +1,5 @@
 class Adventure::InitiateSession < Adventure::Base
+  after :generate_activity_log
 
   def call
     check_consistency
@@ -38,5 +39,15 @@ class Adventure::InitiateSession < Adventure::Base
 
     def session
       context.session
+    end
+
+    def generate_activity_log
+      ActivityLog.log!(
+        text: "#{performer.name} iniciou a sessão #{session.date} da aventura #{adventure.name}",
+        performer: performer,
+        adventure: adventure,
+        session: session,
+        activity: 'adventure::initiate_session'
+      )
     end
 end

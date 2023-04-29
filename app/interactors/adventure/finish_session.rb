@@ -1,4 +1,5 @@
 class Adventure::FinishSession < Adventure::Base
+  after :generate_activity_log
 
   def call
     check_consistency
@@ -33,5 +34,15 @@ class Adventure::FinishSession < Adventure::Base
 
     def session
       context.session
+    end
+
+    def generate_activity_log
+      ActivityLog.log!(
+        text: "#{performer.name} finalizou a sessão #{session.date} da aventura #{adventure.name}",
+        performer: performer,
+        adventure: adventure,
+        session: session,
+        activity: 'adventure::finish_session'
+      )
     end
 end

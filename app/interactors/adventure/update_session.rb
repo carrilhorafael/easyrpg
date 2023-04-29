@@ -1,4 +1,5 @@
 class Adventure::UpdateSession < Adventure::Base
+  after :generate_activity_log
 
   def call
     check_action_permission
@@ -30,5 +31,15 @@ class Adventure::UpdateSession < Adventure::Base
 
     def session
       context.session
+    end
+
+    def generate_activity_log
+      ActivityLog.log!(
+        text: "#{performer.name} atualizou informações da sessão #{session.date} da aventura #{adventure.name}",
+        performer: performer,
+        adventure: adventure,
+        session: session,
+        activity: 'adventure::update_session'
+      )
     end
 end

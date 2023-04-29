@@ -6,7 +6,7 @@ class ActivityLog < ApplicationRecord
   validates :text, presence: true
   validates :activity, presence: true
 
-  def self.log!(text:, activity:, performer:, adventure:, session:, extra:{})
+  def self.log!(text:, activity:, performer:, adventure:, session: nil, extra:{})
     create!(
       performer: performer,
       activity: activity,

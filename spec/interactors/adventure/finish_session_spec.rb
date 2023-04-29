@@ -29,6 +29,12 @@ RSpec.describe Adventure::FinishSession, type: :interactor do
           Adventure::FinishSession.call!(adventure: adventure, session: session, performer: master)
         }.to change(session, :finished?).from(false).to(true)
       end
+
+      it 'generates a activity log' do
+        expect {
+          Adventure::FinishSession.call!(adventure: adventure, session: session, performer: master)
+        }.to change { ActivityLog.where(activity: 'adventure::finish_session').count }.by(1)
+      end
     end
   end
 end
