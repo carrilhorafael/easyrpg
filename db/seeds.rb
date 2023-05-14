@@ -9,3 +9,7 @@
 Templates::GameClasses.all.each do |game_class|
   GameClass.create!(game_class)
 end
+
+Templates::Races.all.each do |race|
+  Race.create!(race)
+end
