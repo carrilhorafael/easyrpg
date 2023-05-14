@@ -37,5 +37,9 @@ module Shard
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    Dir[File.join(Rails.root, 'app', 'classes', 'templates', '*_constraints', '*.rb')].each do |filename|
+      load(filename) if File.exist?(filename)
+    end
   end
 end

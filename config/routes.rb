@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :races
   resources :game_classes
   resources :adventures do
     resources :sessions, controller: 'adventure_sessions' do

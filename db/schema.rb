@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_04_30_235917) do
+ActiveRecord::Schema.define(version: 2023_05_14_224145) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,10 +78,27 @@ ActiveRecord::Schema.define(version: 2023_04_30_235917) do
     t.integer "login_count", default: 0
   end
 
+  create_table "races", force: :cascade do |t|
+    t.string "title"
+    t.string "source"
+    t.bigint "creator_id"
+    t.boolean "only_subraces", default: false
+    t.string "normal_size"
+    t.jsonb "features", default: {}
+    t.jsonb "caracteristics", default: {}
+    t.jsonb "abilities", default: {}
+    t.jsonb "speeds", default: {}
+    t.jsonb "languages", default: {}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_races_on_creator_id"
+  end
+
   add_foreign_key "activity_logs", "adventure_sessions", column: "session_id"
   add_foreign_key "activity_logs", "adventures"
   add_foreign_key "activity_logs", "players", column: "performer_id"
   add_foreign_key "adventure_sessions", "adventures"
   add_foreign_key "adventures", "players", column: "gamemaster_id"
   add_foreign_key "game_classes", "players", column: "creator_id"
+  add_foreign_key "races", "players", column: "creator_id"
 end
