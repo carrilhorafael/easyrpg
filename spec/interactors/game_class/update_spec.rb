@@ -1,6 +1,4 @@
 require 'rails_helper'
-require_relative '../../../app/classes/templates/game_classes_constraints/bard.rb'
-require_relative '../../../app/classes/templates/game_classes_constraints/barbarian.rb'
 
 RSpec.describe GameClass::Update, type: :interactor do
   let(:performer) { create(:player) }

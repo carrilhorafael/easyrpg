@@ -1,6 +1,3 @@
-require_relative './game_classes_constraints/barbarian'
-require_relative './game_classes_constraints/bard'
-require_relative './game_classes_constraints/cleric'
 module Templates
   class GameClasses
 

@@ -1,5 +1,3 @@
-require_relative '../../app/classes/templates/game_classes_constraints/barbarian.rb'
-
 FactoryBot.define do
   factory :game_class do
     title { BARBARIAN[:title] }
