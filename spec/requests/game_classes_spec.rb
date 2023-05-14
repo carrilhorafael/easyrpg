@@ -26,7 +26,7 @@ RSpec.describe "/game_classes", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      GameClass.create! valid_attributes
+      create(:game_class, creator: @active_user)
       get game_classes_url, headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
@@ -34,7 +34,7 @@ RSpec.describe "/game_classes", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      game_class = GameClass.create! valid_attributes
+      game_class = create(:game_class, creator: @active_user)
       get game_class_url(game_class), headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
@@ -81,7 +81,7 @@ RSpec.describe "/game_classes", type: :request do
       }
 
       it "updates the requested game_class" do
-        game_class = GameClass.create! valid_attributes
+        game_class = create(:game_class, creator: @active_user)
         patch game_class_url(game_class),
               params: { game_class: new_attributes }, headers: @authenticated_headers, as: :json
         game_class.reload
@@ -91,7 +91,7 @@ RSpec.describe "/game_classes", type: :request do
       end
 
       it "renders a JSON response with the game_class" do
-        game_class = GameClass.create! valid_attributes
+        game_class = create(:game_class, creator: @active_user)
         patch game_class_url(game_class),
               params: { game_class: new_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:ok)
@@ -101,7 +101,7 @@ RSpec.describe "/game_classes", type: :request do
 
     context "with invalid parameters" do
       it "renders a JSON response with errors for the game_class" do
-        game_class = GameClass.create! valid_attributes
+        game_class = create(:game_class, creator: @active_user)
         patch game_class_url(game_class),
               params: { game_class: invalid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
@@ -112,7 +112,7 @@ RSpec.describe "/game_classes", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested game_class" do
-      game_class = GameClass.create! valid_attributes
+      game_class = create(:game_class, creator: @active_user)
       expect {
         delete game_class_url(game_class), headers: @authenticated_headers, as: :json
       }.to change(GameClass, :count).by(-1)
