@@ -1,5 +1,6 @@
 class Adventure::Create < Adventure::Base
   after :generate_activity_log
+  after :reload_resource
 
   def call
     build_adventure
@@ -17,12 +18,7 @@ class Adventure::Create < Adventure::Base
     context.adventure_params
   end
 
-  def generate_activity_log
-    ActivityLog.log!(
-      text: "#{performer.name} criou a aventura #{adventure.name}",
-      performer: performer,
-      adventure: adventure,
-      activity: 'adventure::create'
-    )
+  def log_text
+    I18n.t('activity_log.adventure.create', performer_name: performer.name, adventure_name: adventure.name)
   end
 end

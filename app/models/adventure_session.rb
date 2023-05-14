@@ -15,4 +15,8 @@ class AdventureSession < ApplicationRecord
       Time.current - created_at
     end
   end
+
+  def uid
+    adventure.sessions.order(:created_at).pluck(:id).index(id) + 1
+  end
 end

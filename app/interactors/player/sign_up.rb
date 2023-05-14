@@ -1,4 +1,5 @@
 class Player::SignUp < Player::Base
+  after :reload_resource
 
   def call
     action_validation

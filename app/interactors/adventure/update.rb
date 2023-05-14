@@ -1,5 +1,6 @@
 class Adventure::Update < Adventure::Base
   after :generate_activity_log
+  after :reload_resource
 
   def call
     check_action_permission
@@ -24,12 +25,7 @@ class Adventure::Update < Adventure::Base
     context.adventure_params
   end
 
-  def generate_activity_log
-    ActivityLog.log!(
-      text: "#{performer.name} atualizou informações da aventura #{adventure.name}",
-      performer: performer,
-      adventure: adventure,
-      activity: 'adventure::update'
-    )
+  def log_text
+    I18n.t('activity_log.adventure.update', performer_name: performer.name, adventure_name: adventure.name)
   end
 end

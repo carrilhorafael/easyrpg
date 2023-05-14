@@ -1,4 +1,5 @@
 class Player::Login < Player::Base
+  after :reload_resource
 
   def call
     action_validation

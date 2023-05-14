@@ -29,5 +29,11 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-en:
-  hello: "Hello world"
+pt-BR:
+  activity_log:
+    adventure:
+      create: "%{performer_name} criou a aventura %{adventure_name}"
+      update: "%{performer_name} atualizou a aventura %{adventure_name}"
+      initiate_session: "%{performer_name} iniciou a sessão %{session_id} da aventura %{adventure_name}"
+      finish_session: "%{performer_name} finalizou a sessão %{session_id} da aventura %{adventure_name}"
+      update_session: "%{performer_name} atualizou informações da sessão %{session_id} da aventura %{adventure_name}"
