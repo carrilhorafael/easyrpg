@@ -10,7 +10,7 @@ class CreateGameClasses < ActiveRecord::Migration[6.1]
       t.jsonb :multiclassing, default: {}
       t.jsonb :initial_equipment, default: {}
       t.jsonb :spellcasting
-      t.jsonb :class_features, default: {}
+      t.jsonb :features, default: {}
       t.references :creator, foreign_key: { to_table: :players }
 
       t.timestamps

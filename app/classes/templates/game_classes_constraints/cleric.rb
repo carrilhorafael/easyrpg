@@ -90,7 +90,7 @@ CLERIC = {
     prepared_spells: 'wisdom modifier + cleric level / 2 rounded down',
     ritual_unprepared_spells: false
   },
-  class_features: {
+  features: {
     1 => {
       'Spellcasting': {
         description: '

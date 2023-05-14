@@ -30,7 +30,7 @@ RSpec.describe GameClass::Create, type: :interactor do
         expect(action.game_class.multiclassing.as_json).to eq(BARBARIAN[:multiclassing].as_json)
         expect(action.game_class.initial_equipment.as_json).to eq(BARBARIAN[:initial_equipment].as_json)
         expect(action.game_class.spellcasting.as_json).to eq(BARBARIAN[:spellcasting].as_json)
-        expect(action.game_class.class_features.as_json).to eq(BARBARIAN[:class_features].as_json)
+        expect(action.game_class.features.as_json).to eq(BARBARIAN[:features].as_json)
       end
     end
   end

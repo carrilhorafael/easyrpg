@@ -50,7 +50,7 @@ BARBARIAN = {
     gold_option: '2d4 * 10 gp'
   },
   spellcasting: nil,
-  class_features: {
+  features: {
     1 => {
       'Rage': {
         description: 'In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action.',

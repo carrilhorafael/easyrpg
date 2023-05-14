@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2023_04_30_235917) do
     t.jsonb "multiclassing", default: {}
     t.jsonb "initial_equipment", default: {}
     t.jsonb "spellcasting"
-    t.jsonb "class_features", default: {}
+    t.jsonb "features", default: {}
     t.bigint "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

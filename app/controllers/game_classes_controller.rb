@@ -48,6 +48,6 @@ class GameClassesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_class_params
-      params.require(:game_class).permit(:title, :source, :description, :abilities_hint, :hit_dice, :proficiencies, :multiclassing, :initial_equipment, :spellcasting, :class_features)
+      params.require(:game_class).permit(:title, :source, :description, :abilities_hint, :hit_dice, :proficiencies, :multiclassing, :initial_equipment, :spellcasting, :features)
     end
 end

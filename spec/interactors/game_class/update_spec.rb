@@ -36,7 +36,7 @@ RSpec.describe GameClass::Update, type: :interactor do
         expect(action.game_class.multiclassing.as_json).to eq(BARD[:multiclassing].as_json)
         expect(action.game_class.initial_equipment.as_json).to eq(BARD[:initial_equipment].as_json)
         expect(action.game_class.spellcasting.as_json).to eq(BARD[:spellcasting].as_json)
-        expect(action.game_class.class_features.as_json).to eq(BARD[:class_features].as_json)
+        expect(action.game_class.features.as_json).to eq(BARD[:features].as_json)
       end
     end
   end

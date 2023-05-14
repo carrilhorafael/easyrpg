@@ -11,7 +11,7 @@ FactoryBot.define do
     multiclassing { BARBARIAN[:multiclassing] }
     initial_equipment { BARBARIAN[:initial_equipment] }
     spellcasting { BARBARIAN[:spellcasting] }
-    class_features { BARBARIAN[:class_features] }
+    features { BARBARIAN[:features] }
     creator_id { nil }
   end
 end
