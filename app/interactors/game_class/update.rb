@@ -6,7 +6,7 @@ class GameClass::Update < GameClass::Base
 
     assign_attributes
     validate_model
-    save_game_class
+    game_class.save!
   end
 
   private
@@ -21,9 +21,5 @@ class GameClass::Update < GameClass::Base
 
   def assign_attributes
     context.game_class.assign_attributes(context.game_class_params)
-  end
-
-  def save_game_class
-    game_class.save!
   end
 end
