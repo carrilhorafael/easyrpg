@@ -3,7 +3,7 @@ class TalentsController < ApplicationController
 
   # GET /talents
   def index
-    @talents = Talent.all
+    @talents = @current_player.talents + Talent.default
 
     render json: @talents
   end
@@ -15,21 +15,23 @@ class TalentsController < ApplicationController
 
   # POST /talents
   def create
-    @talent = Talent.new(talent_params.as_json)
+    action = Talent::Create.call(performer: @current_player, talent_params: talent_params)
 
-    if @talent.save
-      render json: @talent, status: :created, location: @talent
+    if action.success?
+      render json: action.talent, status: :created
     else
-      render json: @talent.errors, status: :unprocessable_entity
+      render json: action.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /talents/1
   def update
-    if @talent.update(talent_params.as_json)
-      render json: @talent
+    action = Talent::Update.call(talent: @talent, performer: @current_player, talent_params: talent_params)
+
+    if action.success?
+      render json: action.talent
     else
-      render json: @talent.errors, status: :unprocessable_entity
+      render json: action.errors, status: :unprocessable_entity
     end
   end
 
@@ -41,11 +43,15 @@ class TalentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_talent
-      @talent = Talent.find(params[:id])
+      @talent = @current_player.talents.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def talent_params
-      params.require(:talent)
+      {
+        title: params[:talent][:title],
+        prerequisites: params[:talent][:prerequisites],
+        features: params[:talent][:features]
+      }
     end
 end
