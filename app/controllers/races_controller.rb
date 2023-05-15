@@ -15,7 +15,7 @@ class RacesController < ApplicationController
 
   # POST /races
   def create
-    action = Race::Create.call(performer: @current_user, race_params: race_params)
+    action = Race::Create.call(performer: @current_player, race_params: race_params)
 
     if action.success?
       render json: action.race, status: :created
@@ -26,7 +26,7 @@ class RacesController < ApplicationController
 
   # PATCH/PUT /races/1
   def update
-    action = Race::Update.call(performer: @current_user, race_params: race_params)
+    action = Race::Update.call(race: @race, performer: @current_player, race_params: race_params)
 
     if action.success?
       render json: action.race
