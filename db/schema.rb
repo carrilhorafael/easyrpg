@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_05_14_224145) do
+ActiveRecord::Schema.define(version: 2023_05_15_001457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,16 @@ ActiveRecord::Schema.define(version: 2023_05_14_224145) do
     t.index ["creator_id"], name: "index_races_on_creator_id"
   end
 
+  create_table "talents", force: :cascade do |t|
+    t.string "title"
+    t.jsonb "prerequisites"
+    t.jsonb "features"
+    t.bigint "creator_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_talents_on_creator_id"
+  end
+
   add_foreign_key "activity_logs", "adventure_sessions", column: "session_id"
   add_foreign_key "activity_logs", "adventures"
   add_foreign_key "activity_logs", "players", column: "performer_id"
@@ -101,4 +111,5 @@ ActiveRecord::Schema.define(version: 2023_05_14_224145) do
   add_foreign_key "adventures", "players", column: "gamemaster_id"
   add_foreign_key "game_classes", "players", column: "creator_id"
   add_foreign_key "races", "players", column: "creator_id"
+  add_foreign_key "talents", "players", column: "creator_id"
 end

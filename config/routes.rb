@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :talents
   resources :races
   resources :game_classes
   resources :adventures do
