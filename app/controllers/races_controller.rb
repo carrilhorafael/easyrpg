@@ -3,7 +3,7 @@ class RacesController < ApplicationController
 
   # GET /races
   def index
-    @races = Race.all
+    @races = @current_player.races + Race.default
 
     render json: @races
   end
@@ -15,21 +15,23 @@ class RacesController < ApplicationController
 
   # POST /races
   def create
-    @race = Race.new(race_params)
+    action = Race::Create.call(performer: @current_user, race_params: race_params)
 
-    if @race.save
-      render json: @race, status: :created, location: @race
+    if action.success?
+      render json: action.race, status: :created
     else
-      render json: @race.errors, status: :unprocessable_entity
+      render json: action.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /races/1
   def update
-    if @race.update(race_params)
-      render json: @race
+    action = Race::Update.call(performer: @current_user, race_params: race_params)
+
+    if action.success?
+      render json: action.race
     else
-      render json: @race.errors, status: :unprocessable_entity
+      render json: action.errors, status: :unprocessable_entity
     end
   end
 
@@ -41,7 +43,7 @@ class RacesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_race
-      @race = Race.find(params[:id])
+      @race = @current_player.races.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
