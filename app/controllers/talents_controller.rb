@@ -48,10 +48,6 @@ class TalentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def talent_params
-      {
-        title: params[:talent][:title],
-        prerequisites: params[:talent][:prerequisites],
-        features: params[:talent][:features]
-      }
+      params.require(:talent).permit!
     end
 end
