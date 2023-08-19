@@ -58,7 +58,7 @@ CLERIC = {
         item: 'Holy Symbol'
       }
     ],
-    gold_option: '5d4 * 10 gp'
+    gold_option: '5d4 * 10gp'
   },
   spellcasting: {
     spellcaster_type: 'full',

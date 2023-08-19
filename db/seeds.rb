@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+Player.destroy_all
+Player.create!({
+  email: 'rafael@email.com',
+  name: 'Rafael',
+  password: 'Senha123',
+  password_confirmation: 'Senha123'
+})
+
 GameClass.destroy_all
 Templates::GameClasses.all.each do |game_class|
   GameClass.create!(game_class)
@@ -19,4 +27,9 @@ end
 Talent.destroy_all
 Templates::Talents.all.each do |talent|
   Talent.create!(talent)
+end
+
+Backstory.destroy_all
+Templates::Backstories.all.each do |backstory|
+  Backstory.create!(backstory)
 end
