@@ -1,4 +1,4 @@
-class Backstory < ApplicationRecord
+class Background < ApplicationRecord
   belongs_to :creator, class_name: 'Player', optional: true
 
   validates :title, presence: true, uniqueness: { scope: :creator_id }

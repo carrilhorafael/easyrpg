@@ -1,7 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe Backstory, type: :model do
+RSpec.describe Background, type: :model do
   describe 'associations' do
+    it { binding.pry }
     it { should belong_to(:creator).class_name('Player').optional }
   end
 
@@ -12,11 +13,11 @@ RSpec.describe Backstory, type: :model do
 
   describe 'scopes' do
     describe '.default' do
-      it 'returns only default backstories' do
-        default_backstory = create(:backstory, creator: nil)
-        create(:backstory, creator: create(:player))
+      it 'returns only default backgrounds' do
+        default_background = create(:background, creator: nil)
+        create(:background, creator: create(:player))
 
-        expect(Backstory.default).to eq([default_backstory])
+        expect(Background.default).to eq([default_background])
       end
     end
   end
@@ -24,17 +25,17 @@ RSpec.describe Backstory, type: :model do
   describe '#default?' do
     context 'when creator is nil' do
       it 'returns true' do
-        backstory = build(:backstory, creator: nil)
+        background = build(:background, creator: nil)
 
-        expect(backstory.default?).to eq(true)
+        expect(background.default?).to eq(true)
       end
     end
 
     context 'when creator is not nil' do
       it 'returns false' do
-        backstory = build(:backstory, creator: create(:player))
+        background = build(:background, creator: create(:player))
 
-        expect(backstory.default?).to eq(false)
+        expect(background.default?).to eq(false)
       end
     end
   end

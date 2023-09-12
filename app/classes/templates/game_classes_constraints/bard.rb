@@ -222,7 +222,7 @@ BARD = {
       {
         name: 'College of Lore',
         source: 'Player\'s Handbook',
-        description: 'Bards of the College of Lore know something about most things, collecting bits of knowledge from sources as diverse as scholarly tomes and peasant tales.'
+        description: 'Bards of the College of Lore know something about most things, collecting bits of knowledge from sources as diverse as scholarly tomes and peasant tales.',
         features: {
           3 => {
             'Bonus Proficiencies': {

@@ -1,6 +1,6 @@
-class CreateBackstories < ActiveRecord::Migration[6.1]
+class CreateBackgrounds < ActiveRecord::Migration[6.1]
   def change
-    create_table :backstories do |t|
+    create_table :backgrounds do |t|
       t.string :title
       t.string :description
       t.string :source

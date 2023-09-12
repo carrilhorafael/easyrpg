@@ -12,9 +12,9 @@ require 'rails_helper'
 # of tools you can use to make these specs even more expressive, but we're
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
-RSpec.describe "/backstories", type: :request do
+RSpec.describe "/backgrounds", type: :request do
   # This should return the minimal set of attributes required to create a valid
-  # Backstory. As you add validations to Backstory, be sure to
+  # Background. As you add validations to Background, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     CHARLATAN
@@ -26,48 +26,48 @@ RSpec.describe "/backstories", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      create(:backstory, creator: @active_user)
-      get backstories_url, headers: @authenticated_headers, as: :json
+      create(:background, creator: @active_user)
+      get backgrounds_url, headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      backstory = create(:backstory, creator: @active_user)
-      get backstory_url(backstory), headers: @authenticated_headers, as: :json
+      background = create(:background, creator: @active_user)
+      get background_url(background), headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "POST /create" do
     context "with valid parameters" do
-      it "creates a new Backstory" do
+      it "creates a new Background" do
         expect {
-          post backstories_url,
-               params: { backstory: valid_attributes }, headers: @authenticated_headers, as: :json
-        }.to change(Backstory, :count).by(1)
+          post backgrounds_url,
+               params: { background: valid_attributes }, headers: @authenticated_headers, as: :json
+        }.to change(Background, :count).by(1)
       end
 
-      it "renders a JSON response with the new backstory" do
-        post backstories_url,
-             params: { backstory: valid_attributes }, headers: @authenticated_headers, as: :json
+      it "renders a JSON response with the new background" do
+        post backgrounds_url,
+             params: { background: valid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "does not create a new Backstory" do
+      it "does not create a new Background" do
         expect {
-          post backstories_url,
-               params: { backstory: invalid_attributes }, headers: @authenticated_headers, as: :json
-        }.to change(Backstory, :count).by(0)
+          post backgrounds_url,
+               params: { background: invalid_attributes }, headers: @authenticated_headers, as: :json
+        }.to change(Background, :count).by(0)
       end
 
-      it "renders a JSON response with errors for the new backstory" do
-        post backstoryes_url,
-             params: { backstory: invalid_attributes }, headers: @authenticated_headers, as: :json
+      it "renders a JSON response with errors for the new background" do
+        post backgroundes_url,
+             params: { background: invalid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -80,30 +80,30 @@ RSpec.describe "/backstories", type: :request do
         { title: "Criminal", description: "You are an experienced criminal with a history of breaking the law. You have spent a lot of time among other criminals and still have contacts within the criminal underworld. You're far closer than most people to the world of murder, theft, and violence that pervades the underbelly of civilization, and you have survived up to this point by flouting the rules and regulations of society." }
       }
 
-      it "updates the requested backstory" do
-        backstory = create(:backstory, creator: @active_user)
-        patch backstory_url(backstory),
-              params: { backstory: new_attributes }, headers: @authenticated_headers, as: :json
-        backstory.reload
+      it "updates the requested background" do
+        background = create(:background, creator: @active_user)
+        patch background_url(background),
+              params: { background: new_attributes }, headers: @authenticated_headers, as: :json
+        background.reload
 
-        expect(backstory.title).to eq(new_attributes.title)
-        expect(backstory.description).to eq(new_attributes.description)
+        expect(background.title).to eq(new_attributes.title)
+        expect(background.description).to eq(new_attributes.description)
       end
 
-      it "renders a JSON response with the backstory" do
-        backstory = create(:backstory, creator: @active_user)
-        patch backstory_url(backstory),
-              params: { backstory: new_attributes }, headers: @authenticated_headers, as: :json
+      it "renders a JSON response with the background" do
+        background = create(:background, creator: @active_user)
+        patch background_url(background),
+              params: { background: new_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
     end
 
     context "with invalid parameters" do
-      it "renders a JSON response with errors for the backstory" do
-        backstory = create(:backstory, creator: @active_user)
-        patch backstory_url(backstory),
-              params: { backstory: invalid_attributes }, headers: @authenticated_headers, as: :json
+      it "renders a JSON response with errors for the background" do
+        background = create(:background, creator: @active_user)
+        patch background_url(background),
+              params: { background: invalid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -111,11 +111,11 @@ RSpec.describe "/backstories", type: :request do
   end
 
   describe "DELETE /destroy" do
-    it "destroys the requested backstory" do
-      backstory = create(:backstory, creator: @active_user)
+    it "destroys the requested background" do
+      background = create(:background, creator: @active_user)
       expect {
-        delete backstory_url(backstory), headers: @authenticated_headers, as: :json
-      }.to change(Backstory, :count).by(-1)
+        delete background_url(background), headers: @authenticated_headers, as: :json
+      }.to change(Background, :count).by(-1)
     end
   end
 end

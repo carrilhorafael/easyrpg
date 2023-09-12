@@ -1,30 +1,30 @@
 require "rails_helper"
 
-RSpec.describe BackstoriesController, type: :routing do
+RSpec.describe BackgroundsController, type: :routing do
   describe "routing" do
     it "routes to #index" do
-      expect(get: "/backstories").to route_to("backstories#index")
+      expect(get: "/backgrounds").to route_to("backgrounds#index")
     end
 
     it "routes to #show" do
-      expect(get: "/backstories/1").to route_to("backstories#show", id: "1")
+      expect(get: "/backgrounds/1").to route_to("backgrounds#show", id: "1")
     end
 
 
     it "routes to #create" do
-      expect(post: "/backstories").to route_to("backstories#create")
+      expect(post: "/backgrounds").to route_to("backgrounds#create")
     end
 
     it "routes to #update via PUT" do
-      expect(put: "/backstories/1").to route_to("backstories#update", id: "1")
+      expect(put: "/backgrounds/1").to route_to("backgrounds#update", id: "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(patch: "/backstories/1").to route_to("backstories#update", id: "1")
+      expect(patch: "/backgrounds/1").to route_to("backgrounds#update", id: "1")
     end
 
     it "routes to #destroy" do
-      expect(delete: "/backstories/1").to route_to("backstories#destroy", id: "1")
+      expect(delete: "/backgrounds/1").to route_to("backgrounds#destroy", id: "1")
     end
   end
 end

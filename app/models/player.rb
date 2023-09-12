@@ -5,7 +5,7 @@ class Player < ApplicationRecord
   has_many :game_classes, foreign_key: :creator_id
   has_many :races, foreign_key: :creator_id
   has_many :talents, foreign_key: :creator_id
-  has_many :backstories, foreign_key: :creator_id
+  has_many :backgrounds, foreign_key: :creator_id
 
   validates :name, :email, presence: true
   validates :email, uniqueness: true

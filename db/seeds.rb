@@ -32,8 +32,8 @@ Templates::Talents.all.each do |talent|
   Talent.create!(talent)
 end
 
-puts 'Creating backstories'
-Backstory.destroy_all
-Templates::Backstories.all.each do |backstory|
-  Backstory.create!(backstory)
+puts 'Creating backgrounds'
+Background.destroy_all
+Templates::Backgrounds.all.each do |background|
+  Background.create!(background)
 end

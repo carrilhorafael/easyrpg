@@ -1,5 +1,5 @@
 module Templates
-  class Backstories
+  class Backgrounds
 
     def self.all
       [
