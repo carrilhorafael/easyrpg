@@ -4,4 +4,6 @@ class HeroSerializer < ActiveModel::Serializer
   has_one :player
   has_one :race
   has_one :background
+  has_many :game_classes
+  has_many :talents
 end
