@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_09_12_213657) do
+ActiveRecord::Schema.define(version: 2023_09_12_224023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,22 @@ ActiveRecord::Schema.define(version: 2023_09_12_213657) do
     t.index ["creator_id"], name: "index_game_classes_on_creator_id"
   end
 
+  create_table "heroes", force: :cascade do |t|
+    t.string "name"
+    t.jsonb "body_traits", default: {}
+    t.jsonb "personality_traits", default: {}
+    t.bigint "adventure_id"
+    t.bigint "player_id", null: false
+    t.bigint "race_id"
+    t.bigint "background_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["adventure_id"], name: "index_heroes_on_adventure_id"
+    t.index ["background_id"], name: "index_heroes_on_background_id"
+    t.index ["player_id"], name: "index_heroes_on_player_id"
+    t.index ["race_id"], name: "index_heroes_on_race_id"
+  end
+
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -125,6 +141,10 @@ ActiveRecord::Schema.define(version: 2023_09_12_213657) do
   add_foreign_key "adventures", "players", column: "gamemaster_id"
   add_foreign_key "backgrounds", "players", column: "creator_id"
   add_foreign_key "game_classes", "players", column: "creator_id"
+  add_foreign_key "heroes", "adventures"
+  add_foreign_key "heroes", "backgrounds"
+  add_foreign_key "heroes", "players"
+  add_foreign_key "heroes", "races"
   add_foreign_key "races", "players", column: "creator_id"
   add_foreign_key "talents", "players", column: "creator_id"
 end

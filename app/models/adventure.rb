@@ -1,6 +1,7 @@
 class Adventure < ApplicationRecord
   belongs_to :gamemaster, class_name: 'Player'
   has_many :sessions, class_name: 'AdventureSession', dependent: :destroy
+  has_many :heroes, dependent: :nullify
 
   validates :name, presence: true
   validates :data, presence: true

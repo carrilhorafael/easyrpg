@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-
   resources :backgrounds
+  resources :heroes
   resources :talents
   resources :races
   resources :game_classes
