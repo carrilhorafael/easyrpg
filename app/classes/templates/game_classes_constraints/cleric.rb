@@ -231,5 +231,10 @@ CLERIC = {
         description: 'At 20th level, your call for intervention succeeds automatically, no roll required.'
       }
     }
+  },
+  subclasses: {
+    name: 'Divine Domain',
+    level: 1,
+    options: []
   }
 }

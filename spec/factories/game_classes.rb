@@ -11,5 +11,6 @@ FactoryBot.define do
     spellcasting { BARBARIAN[:spellcasting] }
     features { BARBARIAN[:features] }
     creator_id { nil }
+    subclasses { BARBARIAN[:subclasses] }
   end
 end
