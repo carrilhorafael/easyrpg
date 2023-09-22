@@ -8,14 +8,18 @@ class Dice
   end
 
   def roll
-    @dice[:count].times.map { rand(1..@dice[:sides]) }
+    @roll ||= @dice[:count].times.map { rand(1..@dice[:sides]) }
+  end
+
+  def reset
+    @roll = nil
   end
 
   def modifier
     @dice[:modifier] || 0
   end
 
-  def roll_and_sum
+  def roll_and_modifier_sum
     roll.sum + modifier
   end
 
