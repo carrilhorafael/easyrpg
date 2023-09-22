@@ -17,11 +17,11 @@ RSpec.describe "/heroes", type: :request do
   # Hero. As you add validations to Hero, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    { name: "Volo Levantein" }
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {}
   }
 
   # This should return the minimal set of values that should be in the headers
@@ -35,15 +35,15 @@ RSpec.describe "/heroes", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       Hero.create! valid_attributes
-      get heroes_url, headers: valid_headers, as: :json
+      get heroes_url, headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
   end
 
   describe "GET /show" do
     it "renders a successful response" do
-      hero = Hero.create! valid_attributes
-      get hero_url(hero), as: :json
+      hero = create(:hero)
+      get hero_url(hero), headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
   end
@@ -53,13 +53,13 @@ RSpec.describe "/heroes", type: :request do
       it "creates a new Hero" do
         expect {
           post heroes_url,
-               params: { hero: valid_attributes }, headers: valid_headers, as: :json
+               params: { hero: valid_attributes }, headers: @authenticated_headers, as: :json
         }.to change(Hero, :count).by(1)
       end
 
       it "renders a JSON response with the new hero" do
         post heroes_url,
-             params: { hero: valid_attributes }, headers: valid_headers, as: :json
+             params: { hero: valid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:created)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -75,7 +75,7 @@ RSpec.describe "/heroes", type: :request do
 
       it "renders a JSON response with errors for the new hero" do
         post heroes_url,
-             params: { hero: invalid_attributes }, headers: valid_headers, as: :json
+             params: { hero: invalid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -85,21 +85,21 @@ RSpec.describe "/heroes", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        { name: "Volo Levantein", personality_traits: { alignment: "Chaotic Neutral" } }
       }
 
       it "updates the requested hero" do
-        hero = Hero.create! valid_attributes
+        hero = create(:hero)
         patch hero_url(hero),
-              params: { hero: new_attributes }, headers: valid_headers, as: :json
+              params: { hero: new_attributes }, headers: @authenticated_headers, as: :json
         hero.reload
         skip("Add assertions for updated state")
       end
 
       it "renders a JSON response with the hero" do
-        hero = Hero.create! valid_attributes
+        hero = create(:hero)
         patch hero_url(hero),
-              params: { hero: new_attributes }, headers: valid_headers, as: :json
+              params: { hero: new_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -107,9 +107,9 @@ RSpec.describe "/heroes", type: :request do
 
     context "with invalid parameters" do
       it "renders a JSON response with errors for the hero" do
-        hero = Hero.create! valid_attributes
+        hero = create(:hero)
         patch hero_url(hero),
-              params: { hero: invalid_attributes }, headers: valid_headers, as: :json
+              params: { hero: invalid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
       end
@@ -118,9 +118,9 @@ RSpec.describe "/heroes", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested hero" do
-      hero = Hero.create! valid_attributes
+      hero = create(:hero)
       expect {
-        delete hero_url(hero), headers: valid_headers, as: :json
+        delete hero_url(hero), headers: @authenticated_headers, as: :json
       }.to change(Hero, :count).by(-1)
     end
   end

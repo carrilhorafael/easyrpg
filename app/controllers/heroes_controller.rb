@@ -3,7 +3,7 @@ class HeroesController < ApplicationController
 
   # GET /heroes
   def index
-    @heroes = Hero.all
+    @heroes = current_player.heroes
 
     render json: @heroes
   end
@@ -15,21 +15,23 @@ class HeroesController < ApplicationController
 
   # POST /heroes
   def create
-    @hero = Hero.new(hero_params)
+    action = Hero::Create.call(hero_params: creation_hero_params, performer: @current_player)
 
-    if @hero.save
-      render json: @hero, status: :created, location: @hero
+    if action.success?
+      render json: action.hero, status: :created, location: action.hero
     else
-      render json: @hero.errors, status: :unprocessable_entity
+      render json: action.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /heroes/1
   def update
-    if @hero.update(hero_params)
-      render json: @hero
+    action = Hero::Update.call(hero_params: hero_params, hero: @hero, performer: @current_player)
+
+    if action.success?
+      render json: action.hero
     else
-      render json: @hero.errors, status: :unprocessable_entity
+      render json: action.errors, status: :unprocessable_entity
     end
   end
 
@@ -41,11 +43,15 @@ class HeroesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hero
-      @hero = Hero.find(params[:id])
+      @hero = current_player.heroes.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def hero_params
       params.require(:hero).permit(:name, :body_traits, :personality_traits, :adventure_id, :player_id, :race_id, :background_id)
+    end
+
+    def creation_hero_params
+      params.require(:hero).permit(:name)
     end
 end

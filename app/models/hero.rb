@@ -8,4 +8,13 @@ class Hero < ApplicationRecord
   has_many :game_classes, through: :hero_game_classes
   has_many :hero_talents, dependent: :destroy
   has_many :talents, through: :hero_talents
+
+  validates :name, presence: true
+  delegate :can?, to: :permissions
+
+  private
+
+  def permissions
+    @permissions ||= Permissions::Hero.new(self)
+  end
 end
