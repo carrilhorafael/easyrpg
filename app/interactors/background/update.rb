@@ -12,18 +12,18 @@ class Background::Update < Background::Base
   private
 
   def check_params
-    context.fail!(errors: 'Background params are missing') unless context.background_params
+    context.fail!(errors: 'Background params are missing') unless background_params
   end
 
   def check_action_permission
-    context.fail!(errors: 'You are not allowed to update this background') if background.default? || performer != background.creator
+    context.fail!(errors: 'You are not allowed to update this background') if performer != background.creator
   end
 
   def assign_attributes
-    context.background.assign_attributes(context.background_params)
+    context.background.assign_attributes(background_params)
   end
 
   def background_params
-    context.background_params
+    context.background_params.slice(:title, :source, :description, :proficiencies, :initial_equipment, :features)
   end
 end

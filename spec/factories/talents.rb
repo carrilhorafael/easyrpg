@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :talent do
-    title { ACTOR[:title] }
-    prerequisites { ACTOR[:prerequisites] }
-    features { ACTOR[:features] }
-    creator { nil }
+    actor = Feats::Templates::Actor.new
+    title { actor.title }
+    prerequisites { actor.prerequisites }
+    features { actor.features }
+    association :creator, factory: :player
   end
 end

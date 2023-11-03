@@ -1,10 +1,12 @@
 FactoryBot.define do
   factory :background do
-    title { CHARLATAN[:title] }
-    description { CHARLATAN[:description] }
-    proficiencies { CHARLATAN[:proficiencies] }
-    source { CHARLATAN[:source] }
-    initial_equipment { CHARLATAN[:initial_equipment] }
-    features { CHARLATAN[:features] }
+    charlatan = Backgrounds::Templates::Charlatan.new
+    association :creator, factory: :player
+    title { charlatan.title }
+    description { charlatan.description }
+    proficiencies { charlatan.proficiencies }
+    source { charlatan.source }
+    initial_equipment { charlatan.initial_equipment }
+    features { charlatan.features }
   end
 end

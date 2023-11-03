@@ -17,11 +17,11 @@ RSpec.describe "/backgrounds", type: :request do
   # Background. As you add validations to Background, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    CHARLATAN
+    Backgrounds::Templates::Charlatan.new.as_json
   }
 
   let(:invalid_attributes) {
-    {}
+    { title: nil }
   }
 
   describe "GET /index" do
@@ -66,7 +66,7 @@ RSpec.describe "/backgrounds", type: :request do
       end
 
       it "renders a JSON response with errors for the new background" do
-        post backgroundes_url,
+        post backgrounds_url,
              params: { background: invalid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to match(a_string_including("application/json"))
@@ -86,8 +86,8 @@ RSpec.describe "/backgrounds", type: :request do
               params: { background: new_attributes }, headers: @authenticated_headers, as: :json
         background.reload
 
-        expect(background.title).to eq(new_attributes.title)
-        expect(background.description).to eq(new_attributes.description)
+        expect(background.title).to eq(new_attributes[:title])
+        expect(background.description).to eq(new_attributes[:description])
       end
 
       it "renders a JSON response with the background" do

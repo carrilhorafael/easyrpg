@@ -18,6 +18,6 @@ class Background::Create < Background::Base
   end
 
   def background_params
-    context.background_params
+    context.background_params.slice(:title, :source, :description, :proficiencies, :initial_equipment, :features)
   end
 end

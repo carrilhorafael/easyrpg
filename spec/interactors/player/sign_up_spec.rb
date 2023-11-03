@@ -10,7 +10,7 @@ RSpec.describe Player::SignUp, type: :interactor do
       end
 
       it 'when pass invalid player_params' do
-        result = Player::SignUp.call(player_params: { name: Faker::Name.name, email: Faker::Internet.email, password: 'password' })
+        result = Player::SignUp.call(player_params: { name: Faker::Name.name, password: 'password' })
 
         expect(result).to be_a_failure
       end

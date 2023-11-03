@@ -16,7 +16,7 @@ class Race::Update < Race::Base
   end
 
   def check_action_permission
-    context.fail!(errors: 'You are not allowed to update this race') if race.default? || performer != race.creator
+    context.fail!(errors: 'You are not allowed to update this race') if performer != race.creator
   end
 
   def assign_attributes

@@ -1,14 +1,16 @@
 FactoryBot.define do
   factory :race do
-    creator { nil }
-    title { ELF[:title] }
-    source { ELF[:source] }
-    only_subraces { ELF[:only_subraces] }
-    normal_size { ELF[:normal_size] }
-    caracteristics { ELF[:caracteristics] }
-    abilities { ELF[:abilities] }
-    speeds { ELF[:speeds] }
-    features { ELF[:features] }
-    languages { ELF[:languages] }
+    elf = Races::Templates::Elf.new
+
+    association :creator, factory: :player
+    title { elf.title }
+    source { elf.source }
+    only_subraces { elf.only_subraces }
+    normal_size { elf.normal_size }
+    caracteristics { elf.caracteristics }
+    abilities { elf.abilities }
+    speeds { elf.speeds }
+    features { elf.features }
+    languages { elf.languages }
   end
 end

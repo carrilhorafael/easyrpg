@@ -1,7 +1,3 @@
-CLERIC = {
-
-}
-
 class GameClasses::Templates::Cleric < GameClasses::Base
   def initialize
     @title = 'Cleric',

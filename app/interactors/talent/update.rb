@@ -16,7 +16,7 @@ class Talent::Update < Talent::Base
   end
 
   def check_action_permission
-    context.fail!(errors: 'You are not allowed to update this talent') if talent.default? || performer != talent.creator
+    context.fail!(errors: 'You are not allowed to update this talent') if performer != talent.creator
   end
 
   def assign_attributes

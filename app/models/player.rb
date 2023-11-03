@@ -10,5 +10,5 @@ class Player < ApplicationRecord
 
   validates :name, :email, presence: true
   validates :email, uniqueness: true
-  # validates :password, length: { minimum: 8 }, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+\z/ }, if: :password
+  validates :password, length: { minimum: 8 }, format: { with: /\A(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+\z/ }, if: :password
 end

@@ -17,7 +17,7 @@ RSpec.describe "/talents", type: :request do
   # Talent. As you add validations to Talent, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    ACTOR
+    Feats::Templates::Alert.new.as_json
   }
 
   let(:invalid_attributes) {
@@ -77,17 +77,18 @@ RSpec.describe "/talents", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        ALERT
+        Feats::Templates::Actor.new.as_json
       }
 
       it "updates the requested talent" do
+        actor =  Feats::Templates::Actor.new.as_json
         talent = create(:talent, creator: @active_user)
         patch talent_url(talent),
               params: { talent: new_attributes }, headers: @authenticated_headers, as: :json
         talent.reload
-        expect(talent.title).to eq(ALERT[:title])
-        expect(talent.prerequisites.as_json).to eq(ALERT[:prerequisites].as_json)
-        expect(talent.features.as_json).to eq(ALERT[:features].as_json)
+        expect(talent.title).to eq(actor["title"])
+        expect(talent.prerequisites.as_json).to eq(actor["prerequisites"].as_json)
+        expect(talent.features.as_json).to eq(actor["features"].as_json)
       end
 
       it "renders a JSON response with the talent" do

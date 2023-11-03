@@ -39,7 +39,7 @@ RSpec.describe Hero::Update, type: :interactor do
       end
 
       it "updates hero's background" do
-        background = create(:background)
+        background = create(:background, creator: performer)
         action = Hero::Update.call(performer: performer, hero: hero, hero_params: hero_params.merge(background_id: background.id))
 
         expect(action).to be_success

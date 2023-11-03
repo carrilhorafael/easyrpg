@@ -3,7 +3,7 @@ class HeroesController < ApplicationController
 
   # GET /heroes
   def index
-    @heroes = current_player.heroes
+    @heroes = @current_player.heroes
 
     render json: @heroes
   end
@@ -43,12 +43,12 @@ class HeroesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_hero
-      @hero = current_player.heroes.find(params[:id])
+      @hero = @current_player.heroes.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def hero_params
-      params.require(:hero).permit(:name, :body_traits, :personality_traits, :adventure_id, :player_id, :race_id, :background_id, game_class_ids: [], talent_ids: [])
+      params.require(:hero).permit(:name, :adventure_id, :race_id, :background_id, body_traits: {}, personality_traits:{}, game_class_ids: [], talent_ids: [])
     end
 
     def creation_hero_params

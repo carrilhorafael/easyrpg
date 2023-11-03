@@ -5,7 +5,7 @@ class BackgroundsController < ApplicationController
   def index
     @backgrounds = Backgrounds::Search.new(@current_player).filter_by_params(search_params).result
 
-    render json: @backgrounds, each_serializer: BackgroundSerializer
+    render json: @backgrounds
   end
 
   # GET /backgrounds/1

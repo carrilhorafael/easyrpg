@@ -1,4 +1,4 @@
-class Feats::Templates::Actor < Feats::Base
+class Feats::Templates::Alert < Feats::Base
   def initialize
     @title = 'Alert'
     @prerequisites = nil

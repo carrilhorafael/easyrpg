@@ -8,6 +8,8 @@ class Feats::Search
     filter_by_title(params[:title])
     filter_by_source(params[:source])
     filter_by_adventure(params[:adventure_id])
+
+    self
   end
 
   def result

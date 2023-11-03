@@ -15,9 +15,7 @@ class Races::Templates::Elf < Races::Base
     @speeds = {
       walking: 30
     }
-    @proficiencies = {
-      languages: ['Common', 'Elvish']
-    }
+    @languages= ['Common', 'Elvish']
     @features = {}
   end
 end

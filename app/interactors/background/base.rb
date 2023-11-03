@@ -3,8 +3,8 @@ class Background::Base < AbstractInteractor
     race
   end
 
-  def talent
-    context.talent
+  def background
+    context.background
   end
 
   def validate_model

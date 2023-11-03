@@ -3,7 +3,7 @@ class TalentsController < ApplicationController
 
   # GET /talents
   def index
-    @talents = @current_player.talents + Talent.default
+    @talents = Feats::Search.new(@current_player).filter_by_params(search_params).result
 
     render json: @talents
   end
@@ -49,5 +49,9 @@ class TalentsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def talent_params
       params.require(:talent).permit!
+    end
+
+    def search_params
+      params.permit(:title, :source, :adventure_id)
     end
 end

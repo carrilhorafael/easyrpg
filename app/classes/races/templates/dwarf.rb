@@ -12,9 +12,10 @@ class Races::Templates::Dwarf < Races::Base
     @speeds = {
       walking: 25
     }
-    @proficiencies = {
-      languages: ['Common', 'Dwarvish']
+    @abilities = {
+      constitution: 2
     }
+    @languages = ['Common', 'Dwarvish']
     @features = {}
   end
 end

@@ -7,7 +7,7 @@ class Races::Custom < Races::Base
       caracteristics:,
       abilities:,
       speeds:,
-      proficiencies:,
+      languages:,
       features:,
       invalid_adventures:
     )
@@ -18,7 +18,7 @@ class Races::Custom < Races::Base
     @caracteristics = caracteristics
     @abilities = abilities
     @speeds = speeds
-    @proficiencies = proficiencies
+    @languages = languages
     @features = features
     @invalid_adventures = invalid_adventures || []
   end

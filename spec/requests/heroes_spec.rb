@@ -21,7 +21,7 @@ RSpec.describe "/heroes", type: :request do
   }
 
   let(:invalid_attributes) {
-    {}
+    { name: nil }
   }
 
   # This should return the minimal set of values that should be in the headers
@@ -34,7 +34,7 @@ RSpec.describe "/heroes", type: :request do
 
   describe "GET /index" do
     it "renders a successful response" do
-      Hero.create! valid_attributes
+      create(:hero, player: @active_user, name: "Volo Levantein")
       get heroes_url, headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
@@ -42,7 +42,7 @@ RSpec.describe "/heroes", type: :request do
 
   describe "GET /show" do
     it "renders a successful response" do
-      hero = create(:hero)
+      hero = create(:hero, player: @active_user, name: "Volo Levantein")
       get hero_url(hero), headers: @authenticated_headers, as: :json
       expect(response).to be_successful
     end
@@ -85,19 +85,21 @@ RSpec.describe "/heroes", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        { name: "Volo Levantein", personality_traits: { alignment: "Chaotic Neutral" } }
+        { name: "Selena Levantein", personality_traits: { alignment: "Chaotic Neutral" } }
       }
 
       it "updates the requested hero" do
-        hero = create(:hero)
+        hero = create(:hero, player: @active_user, name: "Volo Levantein")
         patch hero_url(hero),
               params: { hero: new_attributes }, headers: @authenticated_headers, as: :json
         hero.reload
-        skip("Add assertions for updated state")
+
+        expect(hero.name).to eq("Selena Levantein")
+        expect(hero.personality_traits["alignment"]).to eq("Chaotic Neutral")
       end
 
       it "renders a JSON response with the hero" do
-        hero = create(:hero)
+        hero = create(:hero, player: @active_user, name: "Volo Levantein")
         patch hero_url(hero),
               params: { hero: new_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:ok)
@@ -107,7 +109,7 @@ RSpec.describe "/heroes", type: :request do
 
     context "with invalid parameters" do
       it "renders a JSON response with errors for the hero" do
-        hero = create(:hero)
+        hero = create(:hero, player: @active_user, name: "Volo Levantein")
         patch hero_url(hero),
               params: { hero: invalid_attributes }, headers: @authenticated_headers, as: :json
         expect(response).to have_http_status(:unprocessable_entity)
@@ -118,7 +120,7 @@ RSpec.describe "/heroes", type: :request do
 
   describe "DELETE /destroy" do
     it "destroys the requested hero" do
-      hero = create(:hero)
+      hero = create(:hero, player: @active_user, name: "Volo Levantein")
       expect {
         delete hero_url(hero), headers: @authenticated_headers, as: :json
       }.to change(Hero, :count).by(-1)

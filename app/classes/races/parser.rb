@@ -9,7 +9,7 @@ class Races::Parser
         caracteristics: payload[:caracteristics],
         abilities: payload[:abilities],
         speeds: payload[:speeds],
-        proficiencies: { languages: payload[:languages][:starting_proficiencies] },
+        languages: payload[:languages],
         features: payload[:features],
         invalid_adventures: payload[:invalid_adventures]
       )

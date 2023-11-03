@@ -1,11 +1,5 @@
 class Background < ApplicationRecord
-  belongs_to :creator, class_name: 'Player', optional: true
+  belongs_to :creator, class_name: 'Player'
 
   validates :title, presence: true, uniqueness: { scope: :creator_id }
-
-  scope :default, -> { where(creator_id: nil) }
-
-  def default?
-    !creator
-  end
 end

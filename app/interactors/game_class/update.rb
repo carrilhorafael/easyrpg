@@ -16,7 +16,7 @@ class GameClass::Update < GameClass::Base
   end
 
   def check_action_permission
-    context.fail!(errors: 'You are not allowed to update this game class') if game_class.default? || performer != game_class.creator
+    context.fail!(errors: 'You are not allowed to update this game class') if performer != game_class.creator
   end
 
   def assign_attributes
