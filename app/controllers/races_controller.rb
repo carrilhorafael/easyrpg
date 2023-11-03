@@ -3,7 +3,7 @@ class RacesController < ApplicationController
 
   # GET /races
   def index
-    @races = @current_player.races + Race.default
+    @races = Races::Search.new(@current_player).filter_by_params(search_params).result
 
     render json: @races
   end
@@ -49,5 +49,9 @@ class RacesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def race_params
       params.require(:race).permit!
+    end
+
+    def search_params
+      params.permit(:title, :source, :adventure_id)
     end
 end
