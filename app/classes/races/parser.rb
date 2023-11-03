@@ -3,10 +3,13 @@ class Races::Parser
     def parse(payload)
       Races::Custom.new(
         title: payload[:title],
-        description: payload[:description],
         source: payload[:source],
-        proficiencies: payload[:proficiencies],
-        initial_equipment: payload[:initial_equipment],
+        only_subraces: payload[:only_subraces],
+        normal_size: payload[:normal_size],
+        caracteristics: payload[:caracteristics],
+        abilities: payload[:abilities],
+        speeds: payload[:speeds],
+        proficiencies: { languages: payload[:languages][:starting_proficiencies] },
         features: payload[:features],
         invalid_adventures: payload[:invalid_adventures]
       )
