@@ -31,9 +31,3 @@ Talent.destroy_all
 Templates::Talents.all.each do |talent|
   Talent.create!(talent)
 end
-
-puts 'Creating backgrounds'
-Background.destroy_all
-Templates::Backgrounds.all.each do |background|
-  Background.create!(background)
-end

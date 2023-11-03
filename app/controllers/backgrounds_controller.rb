@@ -3,9 +3,9 @@ class BackgroundsController < ApplicationController
 
   # GET /backgrounds
   def index
-    @backgrounds = Background.all
+    @backgrounds = Backgrounds::Search.new(@current_player).filter_by_params(search_params).result
 
-    render json: @backgrounds
+    render json: @backgrounds, each_serializer: BackgroundSerializer
   end
 
   # GET /backgrounds/1
@@ -49,5 +49,9 @@ class BackgroundsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def background_params
       params.require(:background).permit!
+    end
+
+    def search_params
+      params.permit(:name, :source, :adventure_id)
     end
 end
