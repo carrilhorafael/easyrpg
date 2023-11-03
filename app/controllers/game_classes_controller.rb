@@ -3,7 +3,7 @@ class GameClassesController < ApplicationController
 
   # GET /game_classes
   def index
-    @game_classes = @current_player.game_classes + GameClass.default
+    @game_classes = GameClasses::Search.new(@current_player).filter_by_params(search_params).result
 
     render json: @game_classes
   end
@@ -49,5 +49,9 @@ class GameClassesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def game_class_params
       params.require(:game_class).permit!
+    end
+
+    def search_params
+      params.permit(:title, :source, :adventure_id)
     end
 end
