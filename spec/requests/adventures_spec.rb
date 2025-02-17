@@ -20,8 +20,10 @@ RSpec.describe "/adventures", type: :request do
   let(:valid_attributes) {
     {
       name: "First Adventure",
-      abilities: ['Strengh', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'],
-      skills: [{ name: 'Acrobatics', ability: 'Dexterity' }, { name: 'Animal Handling', ability: 'Wisdom' }, { name: 'Arcana', ability: 'Intelligence' }, { name: 'Athletics', ability: 'Strengh' }, { name: 'Deception', ability: 'Charisma' }, { name: 'History', ability: 'Intelligence' }, { name: 'Insight', ability: 'Wisdom' }, { name: 'Intimidation', ability: 'Charisma' }, { name: 'Investigation', ability: 'Intelligence' }, { name: 'Medicine', ability: 'Wisdom' }, { name: 'Nature', ability: 'Intelligence' }, { name: 'Perception', ability: 'Wisdom' }, { name: 'Performance', ability: 'Charisma' }, { name: 'Persuasion', ability: 'Charisma' }, { name: 'Religion', ability: 'Intelligence' }, { name: 'Sleight of Hand', ability: 'Dexterity' }, { name: 'Stealth', ability: 'Dexterity' }, { name: 'Survival', ability: 'Wisdom' }]
+      data: {
+        abilities: ['Strengh', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'],
+        skills: [{ name: 'Acrobatics', ability: 'Dexterity' }, { name: 'Animal Handling', ability: 'Wisdom' }, { name: 'Arcana', ability: 'Intelligence' }, { name: 'Athletics', ability: 'Strengh' }, { name: 'Deception', ability: 'Charisma' }, { name: 'History', ability: 'Intelligence' }, { name: 'Insight', ability: 'Wisdom' }, { name: 'Intimidation', ability: 'Charisma' }, { name: 'Investigation', ability: 'Intelligence' }, { name: 'Medicine', ability: 'Wisdom' }, { name: 'Nature', ability: 'Intelligence' }, { name: 'Perception', ability: 'Wisdom' }, { name: 'Performance', ability: 'Charisma' }, { name: 'Persuasion', ability: 'Charisma' }, { name: 'Religion', ability: 'Intelligence' }, { name: 'Sleight of Hand', ability: 'Dexterity' }, { name: 'Stealth', ability: 'Dexterity' }, { name: 'Survival', ability: 'Wisdom' }]
+      }
     }
   }
 

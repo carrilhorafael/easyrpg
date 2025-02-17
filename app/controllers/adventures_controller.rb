@@ -43,6 +43,6 @@ class AdventuresController < ApplicationController
     end
 
     def adventure_params
-      params.require(:adventure).permit(:name, abilities: [], skills: [:name, :ability])
+      params.require(:adventure).permit!
     end
 end

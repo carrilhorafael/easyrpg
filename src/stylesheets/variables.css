@@ -1,8 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Almendra:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Almendra+SC&family=Almendra:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 :root {
 
-  --text-font-family-sans: 'Almendra', sans-serif;
+  --text-font-family-sans: 'Playfair Display', serif;
   --title-font-family-sans: 'Almendra SC', sans-serif;
 
   --font-size-xs: 0.75rem;
@@ -33,7 +32,14 @@
   --blue-700: #1F3F4C;
   --blue-800: #102136;
 
-  --spacing-xxs: 0.25rem
+  --red-100: #FFEBEE;
+  --red-200: #FFCDD2;
+  --red-500: #E53935;
+  --red-600: #D32F2F;
+  --red-700: #B71C1C;
+  --red-800: #880E4F;
+
+  --spacing-xxs: 0.25rem;
   --spacing-xs: 0.5rem;
   --spacing-s: 1rem;
   --spacing-m: 1.5rem;

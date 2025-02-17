@@ -2,7 +2,11 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+:root {
+	background-color: var(--gray-700);
+	color: var(--gray-100);
 
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -22,12 +26,10 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
-}
-h1,h2,h3,h4 {
-	font-family: var(--title-font-family-sans);
-}
-p {
 	font-family: var(--text-font-family-sans);
+}
+h1, h2 {
+	font-family: var(--title-font-family-sans);
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,

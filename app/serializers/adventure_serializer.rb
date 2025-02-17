@@ -3,4 +3,5 @@ class AdventureSerializer < ActiveModel::Serializer
 
   has_one :gamemaster, serializer: PlayerSerializer
   has_many :sessions, serializer: AdventureSessionSerializer
+  has_many :heroes, serializer: HeroSerializer
 end
